@@ -1,0 +1,4 @@
+.next/dev/types/validator.ts(107,39): error TS2306: File 'C:/Users/manis/OneDrive/Desktop/skillproject/src/app/bookings/new/page.tsx' is not a module.
+.next/dev/types/validator.ts(179,39): error TS2306: File 'C:/Users/manis/OneDrive/Desktop/skillproject/src/app/provider/skills/new/page.tsx' is not a module.
+.next/types/validator.ts(107,39): error TS2306: File 'C:/Users/manis/OneDrive/Desktop/skillproject/src/app/bookings/new/page.tsx' is not a module.
+.next/types/validator.ts(179,39): error TS2306: File 'C:/Users/manis/OneDrive/Desktop/skillproject/src/app/provider/skills/new/page.tsx' is not a module.

@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkillLink
 
-## Getting Started
+SkillLink is a full-stack web application where users can discover local skill providers, book services, chat in real time, and manage their own skills.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Frontend**: Next.js 15 (App Router), TypeScript, TailwindCSS, ShadCN UI
+- **Backend**: Next.js Server Actions + Supabase (Auth, Database, Realtime, Storage)
+- **Database**: PostgreSQL (Supabase)
+- **Maps**: Google Maps API (Integration ready)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  **Environment Variables**
+    Copy `.env.example` to `.env.local` and fill in your keys:
+    ```bash
+    cp .env.example .env.local
+    ```
+    - `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase Project URL
+    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase Anon Key
+    - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY`: Your Google Maps API Key
 
-## Learn More
+3.  **Database Setup**
+    - Go to your Supabase Dashboard -> SQL Editor.
+    - Run the contents of `supabase/schema.sql`.
+    - Create a storage bucket named `avatars` (Public).
 
-To learn more about Next.js, take a look at the following resources:
+4.  **Run the App**
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Authentication**: Email/Password login & signup with role selection (User/Provider).
+- **Dashboard**: Role-based dashboard.
+- **Skills**: Providers can add skills. Users can search and view details.
+- **Bookings**: Users can book skills. Providers can accept/reject.
+- **Chat**: Real-time messaging between users and providers.
+- **Admin**: Admin panel to view users and skills.
 
-## Deploy on Vercel
+## Folder Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app`: App Router pages
+- `src/components`: UI components (ShadCN)
+- `src/lib`: Utility functions (Supabase client, data fetching)
+- `supabase`: SQL schema
