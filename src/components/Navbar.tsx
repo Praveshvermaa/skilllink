@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, LogOut, User2 } from "lucide-react";
 import { useState } from "react";
 import { User } from "@supabase/supabase-js";
@@ -21,6 +21,7 @@ interface NavbarProps {
 export function Navbar({ user }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   const routes = [
     { href: "/skills", label: "Find Skills" },
@@ -31,8 +32,14 @@ export function Navbar({ user }: NavbarProps) {
   const handleLogout = async () => {
     const toastId = toast.loading("Logging out...");
     try {
-      await signout();
-      toast.dismiss(toastId);
+      const result = await signout();
+      if (result?.success) {
+        toast.dismiss(toastId);
+        router.push("/auth/login");
+        toast.success("Logged out successfully");
+      } else {
+        throw new Error("Logout failed");
+      }
     } catch (error) {
       toast.dismiss(toastId);
       toast.error("Failed to logout");
